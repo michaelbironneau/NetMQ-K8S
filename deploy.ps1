@@ -8,9 +8,9 @@ echo $(minikube docker-env)
 
 # Make sure you start Docker Desktop and minikube first (`minikube start`)
 
-echo "Entering client and building..."
-cd Dummy.Client
-docker build -t greetings-client  -f Dockerfile .
+echo "Entering public API and building..."
+cd Dummy.PublicAPI
+docker build -t greetings-api  -f Dockerfile .
 
 echo "Entering server and building..."
 cd ../Dummy.Server
@@ -28,8 +28,9 @@ echo "Sleeping for 5s to allow service time to deploy"
 sleep 5
 
 # Client
-echo "Deploying client..."
-kubectl apply -f ./Dummy.Client/deployment.yaml
+echo "Deploying public API..."
+kubectl apply -f ./Dummy.PublicAPI/deployment.yaml
+kubectl apply -f ./Dummy.PublicAPI/service.yaml
 
 
 # Restart to make sure we have updates, due to ImagePullPolicy:
@@ -37,6 +38,6 @@ kubectl apply -f ./Dummy.Client/deployment.yaml
 # inconveniently means that if we update them, the deployments
 # will still carry on using the old version until restarted.
 kubectl rollout restart deployment/greetings-service
-kubectl rollout restart deployment/greetings-client
+kubectl rollout restart deployment/greetings-api
 
 echo "Done! :-)"

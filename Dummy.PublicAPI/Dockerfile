@@ -3,4 +3,4 @@ WORKDIR /App
 COPY . ./
 RUN dotnet restore
 RUN dotnet publish -c Release -o out
-ENTRYPOINT ["dotnet", "./out/DummyClient.dll"]
+ENTRYPOINT ["dotnet", "./out/DummyPublicAPI.dll"]

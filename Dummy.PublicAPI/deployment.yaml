@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: greetings-client
+  name: greetings-api
 spec:
   selector:
     matchLabels:
-      app: greetings-client
+      app: greetings-api
   replicas: 1
   template:
     metadata:
       labels:
-        app: greetings-client
+        app: greetings-api
     spec:
       containers:
-      - name: greetings-client
-        image: greetings-client:latest
+      - name: greetings-api
+        image: greetings-api:latest
         imagePullPolicy: Never  # Because this is a local image
         ports:
         - containerPort: 5555

@@ -1,0 +1,13 @@
+kind: Service 
+apiVersion: v1 
+metadata:
+  name: greetings-api
+spec:
+  type: NodePort
+  selector:
+    app: greetings-api
+
+  ports:
+    - nodePort: 30001 
+      port: 5000
+      targetPort: 5000

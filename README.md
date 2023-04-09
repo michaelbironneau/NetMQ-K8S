@@ -6,6 +6,10 @@
 
 3. Deploy (run `deploy.ps`)
 
-You should see request/response pairs every 2.5s in client/server logs (either use `kubectl logs <pod_name>` or an IDE like Lens).
+4. Expose the minikube service on the local machine `minikube service greetings-api --url`
 
-4. [Optional] Stop and clean up (run `stop.ps`)
+This returns something like `http://127.0.0.1:61175` (the port will vary).
+
+5. Go to the URL indicated in a browser. You should see a message. Try `http://127.0.0.1:61175/greet/<name>`.
+
+6. [Optional] Stop and clean up (run `stop.ps`)
