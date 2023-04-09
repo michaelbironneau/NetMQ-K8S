@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: greetings-client-deployment
+  name: greetings-client
 spec:
   selector:
     matchLabels:
       app: greetings-client
-  replicas: 2 # tells deployment to run 2 pods matching the template
+  replicas: 1
   template:
     metadata:
       labels:
         app: greetings-client
     spec:
       containers:
-      - name: greetings-client:latest
-        image: 
+      - name: greetings-client
+        image: greetings-client:latest
+        imagePullPolicy: Never  # Because this is a local image
         ports:
         - containerPort: 5555

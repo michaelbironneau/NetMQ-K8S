@@ -12,7 +12,7 @@ const string GreetedName = "Ben";
 using (var greetingClient = new RequestSocket())
 {
     
-    greetingClient.Connect("tcp://localhost:5555");
+    greetingClient.Connect("tcp://greetings-service:5555");
     while (true)
     {
         Console.WriteLine("Sending '{0}'", GreetedName);

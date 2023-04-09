@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: greetings-service-deployment
+  name: greetings-service
 spec:
   selector:
     matchLabels:
@@ -13,7 +13,8 @@ spec:
         app: greetings-service
     spec:
       containers:
-      - name: greetings-service:latest
-        image: 
+      - name: greetings-service
+        image: greetings-service:latest
+        imagePullPolicy: Never  # Because this is a local image
         ports:
         - containerPort: 5555
