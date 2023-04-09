@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySqlConnector" Version="2.2.5" />
     <PackageReference Include="NetMQ" Version="4.0.1.11" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-# minikube start
+# minikube start --cni calico
 
 # Set Docker environment for minikube
 
@@ -18,14 +18,20 @@ docker build -t greetings-service -f Dockerfile .
 
 cd ..
 
+# Database
+echo "Deploying database..."
+kubectl apply -f ./Dummy.Database/deployment.yaml 
+kubectl apply -f ./Dummy.Database/service.yaml 
+kubectl apply -f ./Dummy.Database/network-policy.yaml 
+
+# The Dummy.Server service will fail to start as the MySQL
+# connection is not immediately available. K8S will eventually
+# heal it, retrying until the database is up. 
+
 # Server
 echo "Deploying server..."
 kubectl apply -f ./Dummy.Server/deployment.yaml 
 kubectl apply -f ./Dummy.Server/service.yaml
-
-
-echo "Sleeping for 5s to allow service time to deploy"
-sleep 5
 
 # Client
 echo "Deploying public API..."

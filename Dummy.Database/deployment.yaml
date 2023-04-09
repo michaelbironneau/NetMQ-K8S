@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: database
+spec: 
+  replicas: 2
+  selector:
+    matchLabels:
+      app: database
+  template: 
+    metadata:
+      labels:
+        app: database
+    spec: 
+      containers: 
+      - name: database
+        image: mariadb
+        ports:
+        - containerPort: 3306 
+        env:
+        - name: MARIADB_ALLOW_EMPTY_ROOT_PASSWORD
+          value: "0"
+        - name: MARIADB_ROOT_PASSWORD
+          value: thisisademo

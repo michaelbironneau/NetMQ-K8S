@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-network-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: database
+  policyTypes:
+    - Ingress
+  ingress:  # Deny requests from all but greetings-service
+    - from:
+        - podSelector:
+            matchLabels:
+              app: greetings-service
+      ports:
+        - protocol: TCP
+          port: 3306
