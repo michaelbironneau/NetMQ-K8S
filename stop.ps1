@@ -1,0 +1,1 @@
+kubectl delete service,deployment greetings-service greetings-client
